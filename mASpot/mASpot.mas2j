@@ -3,7 +3,8 @@ MAS mASpot {
 	infrastructure: Centralised
 
 	agents:
-		agent1 sample_agent;
+		motorista1;
+		gerente;
 
 	aslSourcePath:
 		"src/asl";
