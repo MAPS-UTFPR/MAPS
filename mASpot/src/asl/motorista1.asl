@@ -1,18 +1,14 @@
+/*Initials Goals*/
+
 !chegarEstacionamento.
 !requisitarVaga.
-!requisitarVaga2.
-//!start.
 
++!chegarEstacionamento : true <- +chegadaEstacionamento.
 
-+!chegarEstacionamento : true <- +cheguei; .print("Motorista1 chegou no estacionamento!").
++!requisitarVaga : chegadaEstacionamento 
+	<- .print("Cheguei no estacionamento!"); .print("Aguardando liberação da vaga..."); 
+	   .send(gerente,achieve,requisicaoVaga).
 
-
-//+!start : true <- .send(gerente , tell , hello).
-
-+!requisitarVaga : cheguei <- .send(gerente, tell, requisicaoVaga); .print("teste").
-+!requisitarVaga2 : cheguei <- .send(gerente, tell, requisicaoVaga); .print("teste2").
-
-
-
-+!espere <- .print("Espere ae vei").
++!estacionar : vagaLiberada & chegadaEstacionamento 
+	<- .print("Estacionando na vaga...").
 

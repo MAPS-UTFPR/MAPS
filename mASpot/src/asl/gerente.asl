@@ -1,12 +1,9 @@
 //Initials goals and beliefs
+estacionamento(v,3).
 
-estacionamento(50).
-
-//+hello[source(A)] <- .print("I received a 'hello' from ",A).
-//
-//+!verificarVaga : estacionamento(X) & X > 500 <- .print("oi",X).
-//
-//+!requisicaoVaga[source(A)]: estacionamento(X) <- .print("Motorista: ",A," ganhou a vaga!").
-//
-//+requisicaoVaga : estacionamento(X) & X < 1 <- 
-//	.print("Estacionamento Cheio!").
++!requisicaoVaga[source(AGENT)]: estacionamento(X,Y) & Y > 0
+	<- .print("Vaga alocada para: ",AGENT); -estacionamento(v,Y); 
+		+estacionamento(v,Y-1); !imprimirVagas.
+	
++!imprimirVagas : estacionamento(X,Y) 
+	<- .print("Vagas Disponiveis: ",Y).
