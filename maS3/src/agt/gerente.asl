@@ -5,17 +5,34 @@
 
 /* Initial beliefs and rules */
 
-nVagasMAX(2).
-
+nVagasMAX(1).
 nVagasUsadas(0).
 isFull(false).
+pLotacao(0).
 
 estacionamento(0,0, "EMPTY").
-estacionamento(1,0, "EMPTY").
+//estacionamento(1,0, "EMPTY").
 //estacionamento(2,0, "EMPTY").
 //estacionamento(3,0, "EMPTY").
 //estacionamento(4,0, "EMPTY").
 //estacionamento(5,0, "EMPTY").
+//estacionamento(6,0, "EMPTY").
+//estacionamento(7,0, "EMPTY").
+//estacionamento(8,0, "EMPTY").
+//estacionamento(9,0, "EMPTY").
+//estacionamento(10,0, "EMPTY").
+//estacionamento(11,0, "EMPTY").
+//estacionamento(12,0, "EMPTY").
+//estacionamento(13,0, "EMPTY").
+//estacionamento(14,0, "EMPTY").
+//estacionamento(15,0, "EMPTY").
+//estacionamento(16,0, "EMPTY").
+//estacionamento(17,0, "EMPTY").
+//estacionamento(18,0, "EMPTY").
+//estacionamento(19,0, "EMPTY").
+//estacionamento(20,0, "EMPTY").
+
+
 
 /* Initial goals */
 
@@ -31,20 +48,21 @@ estacionamento(1,0, "EMPTY").
 	     makeArtifact("a_Controle", "maS3.Controle", ["20"], ArtId2);
 	     focus(ArtId2).
 	     
-+!requisicaoVaga[source(AG)] <-
++!requisicaoVaga(BACKGROUND)[source(AG)] <-
 	.term2string(AG,AGENT);
-	.print("Agente: ",AGENT," requisitou uma vaga!");	
-	!alocaVaga(AGENT).
+	.print("Agente: ",AGENT," requisitou uma vaga! - Background:(",BACKGROUND,")");	
+	!alocaVaga(AGENT,BACKGROUND).
 	
-+!requisicaoVaga(AGENT) <-
++!requisicaoVaga(AGENT,BACKGROUND,C) <-
 	.print("Agente: ",AGENT," requisitou uma vaga! (SECOND)");	
-	!alocaVaga(AGENT).
+	!alocaVaga(AGENT,BACKGROUND).
 	
 	
-+!alocaVaga(AGENT) : 
++!alocaVaga(AGENT,BACKGROUND) : 
 					nVagasUsadas(N) & 
 					nVagasMAX(MAX) & 
 					isFull(COND) &
+					pLotacao(P) & 
 					COND = false 
 					<- 
 	
@@ -63,12 +81,16 @@ estacionamento(1,0, "EMPTY").
 			
 			-nVagasUsadas(N); +nVagasUsadas(N+1);
 			
-
 			if((N+1) = MAX){
 				-isFull(COND);
 				+isFull(true);
 				.print("Estacionamento CHEIO!");
 			};
+			
+			-pLotacao(P);					
+			+pLotacao(((N+1) * 100) / MAX);
+			.print("Porcentagem Lotacao: ",((N+1) * 100) / MAX,"%");
+			
 			
 			
 			
@@ -78,8 +100,8 @@ estacionamento(1,0, "EMPTY").
 	};
 	+~find.
 	
-+!alocaVaga(Ag) : isFull(COND) & COND = true <- 
-		insereMotoristaFila(Ag).
++!alocaVaga(AGENT,BACKGROUND) : isFull(COND) & COND = true <- 
+		insereMotoristaFila(AGENT,BACKGROUND).
 		
 	
 +!imprimeVagas <-
@@ -87,17 +109,18 @@ estacionamento(1,0, "EMPTY").
 	     	 	.print("Vaga: ",V," - Estado: ",Z, " - Agente: ",AG);	     
 	     }.
 	     
-+!verificaFila : nVagasUsadas(N) & isFull(COND) <-
++!verificaFila : nVagasUsadas(N) & isFull(COND)<-
 	
 	isAnyone(C);
 	if(C = false){
-		liberaMotorista(Ag);
-		!requisicaoVaga(Ag);
+		liberaMotorista(AG,BG);
+		!requisicaoVaga(AG,BG,true);
 	}else{
 		.print("Ninguem na fila!");
 	}.
 	     
-+!liberarVaga(V)[source(AG)] : nVagasUsadas(N) & isFull(COND)<-
++!liberarVaga(V)[source(AG)] : nVagasUsadas(N) & nVagasMAX(MAX) &  isFull(COND) &
+					pLotacao(P) <-
 	.term2string(AG,AGENT);
 	.print(AGENT," liberando vaga: ",V);
 	
@@ -106,6 +129,7 @@ estacionamento(1,0, "EMPTY").
 	
 	-isFull(COND);
 	+isFull(false);
+	
 	
 	+estacionamento(V , 0 , "EMPTY");	
 	-estacionamento(V,1,AGENT);	

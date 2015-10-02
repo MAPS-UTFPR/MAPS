@@ -12,19 +12,23 @@ import cartago.OpFeedbackParam;
 
 public class Controle extends Artifact {
 	
-	LinkedList <Object> listaEspera;
+	public LinkedList <Motorista> listaEspera;
+	Motorista motorista;
+	
+	
 	
 	void init(String msg){
-		listaEspera = new LinkedList<Object>();
+		listaEspera = new LinkedList<Motorista>();
         defineObsProperty("first", "empty");       
 
 	}
 	
 	@OPERATION
-	public void insereMotoristaFila(Object idMotorista){
+	public void insereMotoristaFila(Object idMotorista, Object bMotorista){
 		
 		//System.out.println("Motorista: " + idMotorista + " entrou na fila!");
-		listaEspera.add(idMotorista);
+		motorista = new Motorista(idMotorista.toString(), Integer.parseInt(bMotorista.toString()));
+		listaEspera.add(motorista);
 		System.out.println("Tipo:" + idMotorista.getClass());
 		System.out.println("Fila de espera: " + listaEspera);
 	}
@@ -36,11 +40,28 @@ public class Controle extends Artifact {
 	}
 	
 	@OPERATION
-	public void liberaMotorista(OpFeedbackParam<Object> idMotorista){	
+	public void liberaMotorista(OpFeedbackParam<Object> idMotorista, OpFeedbackParam<Object> bMotorista){
+		
+		Motorista m = maiorReputacao();
 		ObsProperty opFirst = getObsProperty("first");
-		opFirst.updateValue(listaEspera.getFirst());
-		idMotorista.set(listaEspera.getFirst());
-		listaEspera.removeFirst();
+		//opFirst.updateValue(listaEspera.getFirst());
+		
+		idMotorista.set(m.getId());
+		bMotorista.set(m.getBackground());
+		listaEspera.remove(m);
+	}
+	
+	public Motorista maiorReputacao(){
+		
+		Motorista m1 = new Motorista();		
+		
+		for(Motorista m : listaEspera){
+			if(m1.getBackground() < m.getBackground())
+				m1 = m;
+		}
+		
+		return m1;
+		
 	}
 	
 	
