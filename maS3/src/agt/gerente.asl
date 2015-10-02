@@ -10,6 +10,8 @@ nVagasUsadas(0).
 isFull(false).
 pLotacao(0).
 
+
+
 estacionamento(0,0, "EMPTY").
 //estacionamento(1,0, "EMPTY").
 //estacionamento(2,0, "EMPTY").
@@ -77,6 +79,7 @@ estacionamento(0,0, "EMPTY").
 			
 			.send(AGENT,tell,vagaLiberada); .send(AGENT,achieve,estacionar(V));
 			
+			//check
 			fecharCancela;
 			
 			-nVagasUsadas(N); +nVagasUsadas(N+1);
@@ -98,6 +101,7 @@ estacionamento(0,0, "EMPTY").
 			-~find;
 		}
 	};
+	//check
 	+~find.
 	
 +!alocaVaga(AGENT,BACKGROUND) : isFull(COND) & COND = true <- 
