@@ -2,6 +2,7 @@
 
 package maS3;
 
+import java.util.Date;
 import java.util.LinkedList;
 
 import cartago.Artifact;
@@ -15,6 +16,8 @@ public class Controle extends Artifact {
 	public LinkedList <Motorista> listaEspera;
 	Motorista motorista;
 	
+	public final int INTERVALO_ESPERA = 60000;
+	
 	
 	
 	void init(String msg){
@@ -27,7 +30,7 @@ public class Controle extends Artifact {
 	public void insereMotoristaFila(Object idMotorista, Object bMotorista){
 		
 		//System.out.println("Motorista: " + idMotorista + " entrou na fila!");
-		motorista = new Motorista(idMotorista.toString(), Integer.parseInt(bMotorista.toString()));
+		motorista = new Motorista(idMotorista.toString(), Integer.parseInt(bMotorista.toString()), new Date());
 		listaEspera.add(motorista);
 		System.out.println("Tipo:" + idMotorista.getClass());
 		System.out.println("Fila de espera: " + listaEspera);
@@ -43,8 +46,6 @@ public class Controle extends Artifact {
 	public void liberaMotorista(OpFeedbackParam<Object> idMotorista, OpFeedbackParam<Object> bMotorista){
 		
 		Motorista m = maiorReputacao();
-		ObsProperty opFirst = getObsProperty("first");
-		//opFirst.updateValue(listaEspera.getFirst());
 		
 		idMotorista.set(m.getId());
 		bMotorista.set(m.getBackground());
@@ -55,13 +56,17 @@ public class Controle extends Artifact {
 		
 		Motorista m1 = new Motorista();		
 		
-		for(Motorista m : listaEspera){
+		for(Motorista m : listaEspera){		
+			if(new Date().getTime() - m.getWaitTime().getTime() > INTERVALO_ESPERA)
+				return m;
+		}
+		
+		for(Motorista m : listaEspera){			
 			if(m1.getBackground() < m.getBackground())
-				m1 = m;
+				m1 = m; 
 		}
 		
 		return m1;
-		
 	}
 	
 	

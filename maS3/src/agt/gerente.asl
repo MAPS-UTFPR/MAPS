@@ -46,6 +46,8 @@ estacionamento(0,0, "EMPTY").
 	     makeArtifact("a_Cancela", "maS3.Cancela", ["Starting"], ArtId);
 	     focus(ArtId);
 	     .print("Estacionamento aberto!");
+	     .time(H,M,S);
+	     .print("Hora: ",H,":",M,":",S);
 	     
 	     makeArtifact("a_Controle", "maS3.Controle", ["20"], ArtId2);
 	     focus(ArtId2).
@@ -55,7 +57,7 @@ estacionamento(0,0, "EMPTY").
 	.print("Agente: ",AGENT," requisitou uma vaga! - Background:(",BACKGROUND,")");	
 	!alocaVaga(AGENT,BACKGROUND).
 	
-+!requisicaoVaga(AGENT,BACKGROUND,C) <-
++!requisicaoVagaFila(AGENT,BACKGROUND) <-
 	.print("Agente: ",AGENT," requisitou uma vaga! (SECOND)");	
 	!alocaVaga(AGENT,BACKGROUND).
 	
@@ -118,7 +120,7 @@ estacionamento(0,0, "EMPTY").
 	isAnyone(C);
 	if(C = false){
 		liberaMotorista(AG,BG);
-		!requisicaoVaga(AG,BG,true);
+		!requisicaoVagaFila(AG,BG);
 	}else{
 		.print("Ninguem na fila!");
 	}.

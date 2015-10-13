@@ -15,9 +15,9 @@ agent m1
 //	
 agent gerente 
 
-	agent m1{
-		instances: 2
-	}
+//	agent m1{
+//		instances: 10
+//	}
 //agent m5 
 
 
