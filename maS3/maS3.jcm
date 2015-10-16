@@ -8,7 +8,9 @@
 
 */ 
 
-mas maS3 { 
+mas maS3 {
+	agent m7
+	agent m6 
 agent m4 
 agent m3 
 agent m1 

@@ -58,7 +58,7 @@ estacionamento(0,0, "EMPTY").
 	!alocaVaga(AGENT,BACKGROUND).
 	
 +!requisicaoVagaFila(AGENT,BACKGROUND) <-
-	.print("Agente: ",AGENT," requisitou uma vaga! (SECOND)");	
+	.print("Agente: ",AGENT," requisitou uma vaga!");	
 	!alocaVaga(AGENT,BACKGROUND).
 	
 	

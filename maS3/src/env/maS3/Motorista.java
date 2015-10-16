@@ -6,7 +6,7 @@ public class Motorista {
 	
 	private String id;
 	private int background;
-	private Date waitTime;
+	private Date dataChegada;
 	
 	public Motorista(){
 		
@@ -15,7 +15,7 @@ public class Motorista {
 	public Motorista(String id, int b, Date t){
 		this.id = id;
 		this.background = b;
-		this.waitTime = t;
+		this.dataChegada = t;
 	}
 
 	public String getId() {
@@ -35,16 +35,16 @@ public class Motorista {
 	}
 	
 	public Date getWaitTime(){
-		return waitTime;
+		return dataChegada;
 	}
 	
 	public void setWaitTime(Date time){
-		waitTime = time;
+		dataChegada = time;
 	}
 	
 	@Override
 	public String toString() {
-		return this.id.concat(" - " + this.background + " - (" + this.waitTime + ")");
+		return this.id.concat(" - " + this.background + " - (" + this.dataChegada + ")");
 	}
 	
 	

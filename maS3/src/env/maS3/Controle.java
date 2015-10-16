@@ -7,7 +7,6 @@ import java.util.LinkedList;
 
 import cartago.Artifact;
 import cartago.OPERATION;
-import cartago.ObsProperty;
 import cartago.OpFeedbackParam;
 
 
