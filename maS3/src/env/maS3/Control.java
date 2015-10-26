@@ -13,20 +13,13 @@ import cartago.OpFeedbackParam;
 public class Control extends Artifact {
 	
 	public LinkedList <Driver> waitingQueue;
-	public LinkedList <Driver> listaTotal = new LinkedList<Driver>();
-
-	Driver driver;
-	public float tempoTotal = 0;
-	int numMotoristas = 7;
+	Driver driver;	
 	
 	public final int WAIT_TIME = 60000;
 	
-	
-	
 	void init(String msg){
 		waitingQueue = new LinkedList<Driver>();
-        defineObsProperty("first", "empty");       
-
+        defineObsProperty("first", "empty"); 
 	}
 	
 	@OPERATION
@@ -36,8 +29,7 @@ public class Control extends Artifact {
 		driver = new Driver(idDriver.toString(), Integer.parseInt(tDriver.toString()), new Date());
 		waitingQueue.add(driver);
 		
-		System.out.println("Fila de espera: " + waitingQueue);
-		listaTotal.add(driver);
+		System.out.println("Waiting Queue: " + waitingQueue);
 	}
 	
 	@OPERATION
@@ -55,28 +47,9 @@ public class Control extends Artifact {
 		tDriver.set(d.getBackground());
 		
 		waitingQueue.remove(d);
-		d.dataAlocacao = new Date();
-		tempoTotal += d.dataAlocacao.getTime() - d.getArrivalTime().getTime();
 		
 	}
-	
-	@OPERATION
-	public void calculaTempoMedio(){
-		
-		System.out.println("========================================");
-		System.out.println("TEMPO MEDIO DE ALOCACAO: " + (tempoTotal/1000)/numMotoristas);
-		System.out.println("Quantidade de motoristas FILA: " + listaTotal.size());
-		System.out.println("========================================");
-		for(Driver m : listaTotal){
-			System.out.println("========================================");
-			System.out.println("Motorista: " + m.getId());
-			System.out.println("Background: " + m.getBackground());
-			System.out.println("Hora chegada: " + m.getArrivalTime());
-			System.out.println("Hora de alocacao: " + m.dataAlocacao);
-			float x = ((m.dataAlocacao.getTime() -  m.getArrivalTime().getTime())/1000);
-			System.out.println("Tempo de espera: " + x + "s");
-		}
-	}
+
 	
 	public Driver greatestTrust(){
 		

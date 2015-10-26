@@ -105,7 +105,6 @@ spot(4,0, "EMPTY").
 			-~find;
 		}
 	};
-	//check
 	+~find.
 	
 +!allocateSpot(AGENT,BACKGROUND) : isFull(COND) & COND = true <- 
@@ -125,7 +124,6 @@ spot(4,0, "EMPTY").
 		!requestSpotQueue(AG,BG);
 	}else{
 		.print("Nobody at queue");
-		//calculaTempoMedio;
 	}.
 	     
 +!leaveSpot(S)[source(AG)] : nSpotsUsed(N) & nSpotsMAX(MAX) &  isFull(COND) &

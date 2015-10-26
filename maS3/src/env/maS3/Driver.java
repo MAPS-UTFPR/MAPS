@@ -7,7 +7,6 @@ public class Driver {
 	private String id;
 	private int myTrust;
 	private Date arrivalTime;
-	public Date dataAlocacao;
 	
 	public Driver(){
 		
