@@ -35,7 +35,7 @@ public class Control extends Artifact {
 		System.out.println("Driver: " + idDriver + " got in queue!");
 		driver = new Driver(idDriver.toString(), Integer.parseInt(tDriver.toString()), new Date());
 		waitingQueue.add(driver);
-		//System.out.println("Tipo:" + idMotorista.getClass());
+		
 		System.out.println("Fila de espera: " + waitingQueue);
 		listaTotal.add(driver);
 	}
@@ -73,7 +73,8 @@ public class Control extends Artifact {
 			System.out.println("Background: " + m.getBackground());
 			System.out.println("Hora chegada: " + m.getArrivalTime());
 			System.out.println("Hora de alocacao: " + m.dataAlocacao);
-			System.out.println("Tempo de espera: " + ((m.dataAlocacao.getTime() -  m.getArrivalTime().getTime())/1000) + "s");
+			float x = ((m.dataAlocacao.getTime() -  m.getArrivalTime().getTime())/1000);
+			System.out.println("Tempo de espera: " + x + "s");
 		}
 	}
 	

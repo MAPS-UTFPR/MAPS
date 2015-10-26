@@ -5,17 +5,17 @@
 
 /* Initial beliefs and rules */
 
-nSpotsMAX(1).
+nSpotsMAX(5).
 nSpotsUsed(0).
 isFull(false).
 pFull(0).
 
 
 spot(0,0, "EMPTY").
-//spot(1,0, "EMPTY").
-//spot(2,0, "EMPTY").
-//spot(3,0, "EMPTY").
-//spot(4,0, "EMPTY").
+spot(1,0, "EMPTY").
+spot(2,0, "EMPTY").
+spot(3,0, "EMPTY").
+spot(4,0, "EMPTY").
 //spot(5,0, "EMPTY").
 //spot(6,0, "EMPTY").
 //spot(7,0, "EMPTY").
@@ -125,7 +125,7 @@ spot(0,0, "EMPTY").
 		!requestSpotQueue(AG,BG);
 	}else{
 		.print("Nobody at queue");
-		calculaTempoMedio;
+		//calculaTempoMedio;
 	}.
 	     
 +!leaveSpot(S)[source(AG)] : nSpotsUsed(N) & nSpotsMAX(MAX) &  isFull(COND) &
