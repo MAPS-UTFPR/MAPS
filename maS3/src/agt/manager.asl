@@ -16,27 +16,27 @@ spot(1,0, "EMPTY").
 spot(2,0, "EMPTY").
 spot(3,0, "EMPTY").
 spot(4,0, "EMPTY").
-//spot(5,0, "EMPTY").
-//spot(6,0, "EMPTY").
-//spot(7,0, "EMPTY").
-//spot(8,0, "EMPTY").
-//spot(9,0, "EMPTY").
-//spot(10,0, "EMPTY").
-//spot(11,0, "EMPTY").
-//spot(12,0, "EMPTY").
-//spot(13,0, "EMPTY").
-//spot(14,0, "EMPTY").
-//spot(15,0, "EMPTY").
-//spot(16,0, "EMPTY").
-//spot(17,0, "EMPTY").
-//spot(18,0, "EMPTY").
-//spot(19,0, "EMPTY").
-//spot(20,0, "EMPTY").
-//
-//spot(21,0, "EMPTY").
-//spot(22,0, "EMPTY").
-//spot(23,0, "EMPTY").
-//spot(24,0, "EMPTY").
+spot(5,0, "EMPTY").
+spot(6,0, "EMPTY").
+spot(7,0, "EMPTY").
+spot(8,0, "EMPTY").
+spot(9,0, "EMPTY").
+spot(10,0, "EMPTY").
+spot(11,0, "EMPTY").
+spot(12,0, "EMPTY").
+spot(13,0, "EMPTY").
+spot(14,0, "EMPTY").
+spot(15,0, "EMPTY").
+spot(16,0, "EMPTY").
+spot(17,0, "EMPTY").
+spot(18,0, "EMPTY").
+spot(19,0, "EMPTY").
+spot(20,0, "EMPTY").
+
+spot(21,0, "EMPTY").
+spot(22,0, "EMPTY").
+spot(23,0, "EMPTY").
+spot(24,0, "EMPTY").
 
 
 
