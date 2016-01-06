@@ -8,8 +8,11 @@ public class Driver {
 	private int myTrust;
 	private Date arrivalTime;
 	
-	public Driver(){
-		
+	public Driver(){}
+	
+	public Driver(String id, int trust){
+		this.id = id;
+		this.myTrust = trust;
 	}
 	
 	public Driver(String id, int b, Date t){

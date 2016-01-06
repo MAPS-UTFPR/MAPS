@@ -50,7 +50,7 @@ spot(0,0, "EMPTY").
 	     focus(ArtId);
 	     .print("Parking has opened");
 	     
-	     makeArtifact("a_Control", "mAPS.Control", ["20"], ArtId2);
+	     makeArtifact("a_Control", "mAPS.QueueControl", ["20"], ArtId2);
 	     focus(ArtId2).
 	     
 +!requestSpot(BACKGROUND)[source(AG)] <-

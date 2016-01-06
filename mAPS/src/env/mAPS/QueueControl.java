@@ -10,7 +10,7 @@ import cartago.OPERATION;
 import cartago.OpFeedbackParam;
 
 
-public class Control extends Artifact {
+public class QueueControl extends Artifact {
 	
 	public LinkedList <Driver> waitingQueue;
 	Driver driver;	
