@@ -5,15 +5,24 @@ package mAPS;
 import cartago.*;
 
 public class Gate extends Artifact {
-	void init(int initialValue) {
-		defineObsProperty("count", initialValue);
+	
+	void init(String msg) {		
+		System.out.println("System message: " + msg );
+	}
+
+
+	@OPERATION
+	public void openGate(){
+		System.out.println("Opening gate!");
+		
 	}
 	
 	@OPERATION
-	void inc() {
-		ObsProperty prop = getObsProperty("count");
-		prop.updateValue(prop.intValue()+1);
-		signal("tick");
+	public void closeGate(){
+		System.out.println("Closing gate!");
 	}
+	
+
 }
+
 
