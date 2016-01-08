@@ -51,19 +51,23 @@ spot(0,0, "EMPTY").
 	     .print("Parking has opened");
 	     
 	     makeArtifact("a_Control", "mAPS.QueueControl", ["20"], ArtId2);
-	     focus(ArtId2).
+	     focus(ArtId2);
 	     
-+!requestSpot(BACKGROUND)[source(AG)] <-
-	.term2string(AG,AGENT);
-	.print("Agent: ",AGENT," has requested a spot! - Background:(",BACKGROUND,")");	
-	!allocateSpot(AGENT,BACKGROUND).
+	     makeArtifact("a_DBControl", "mAPS.DBControl", ["20"], ArtId3);
+	     focus(ArtId3).
+	     
++!requestSpot[source(AG)] <-
+	.term2string(AG,AGENT);	
+	getDriver(AGENT,TRUST);	
+	.print("Agent: ",AGENT," has requested a spot! - TRUST: ", TRUST);		
+	!allocateSpot(AGENT,TRUST).
 	
-+!requestSpotQueue(AGENT,BACKGROUND) <-
-	.print("Agent: ",AGENT," has requested a spot from Queue! - Background:(",BACKGROUND,")");	
-	!allocateSpot(AGENT,BACKGROUND).
++!requestSpotQueue(AGENT,TRUST) <-
+	.print("Agent: ",AGENT," has requested a spot from Queue! - Trust:(",TRUST,")");	
+	!allocateSpot(AGENT,TRUST).
 	
 	
-+!allocateSpot(AGENT,BACKGROUND) : 
++!allocateSpot(AGENT,TRUST) : 
 					nSpotsUsed(N) & 
 					nSpotsMAX(MAX) & 
 					isFull(COND) &
@@ -81,7 +85,9 @@ spot(0,0, "EMPTY").
 			
 			openGate;
 			
-			.send(AGENT,tell,spotOk); .send(AGENT,achieve,park(S));
+			.send(AGENT,tell,spotOk); 
+			.send(AGENT,achieve,park(S));
+			insertOrUpdateDriver(AGENT,TRUST+20);
 			
 						
 			-nSpotsUsed(N); +nSpotsUsed(N+1);
@@ -106,8 +112,8 @@ spot(0,0, "EMPTY").
 	};
 	+~find.
 	
-+!allocateSpot(AGENT,BACKGROUND) : isFull(COND) & COND = true <- 
-		insertDriverQueue(AGENT,BACKGROUND).
++!allocateSpot(AGENT,TRUST) : isFull(COND) & COND = true <- 
+		insertDriverQueue(AGENT,TRUST).
 		
 	
 +!printSpots <-
@@ -140,7 +146,7 @@ spot(0,0, "EMPTY").
 	+spot(S,0,"EMPTY");	
 	-spot(S,1,AGENT);	
 	
-	.kill_agent(AGENT);
+	//.kill_agent(AGENT);
 	
 	!checkQueue.
 	

@@ -12,6 +12,11 @@ public class DriverBD {
 	
 	public DriverBD(){}
 	
+	public DriverBD(String id){
+		this.id = id;
+		this.myTrust = 0;
+	}
+	
 	public DriverBD(String id, int myTrust){
 		this.id = id;
 		this.myTrust = myTrust;
@@ -46,7 +51,7 @@ public class DriverBD {
 
 		TupleInput input = TupleBinding.entryToInput(entry);
 
-		// set id and trust
+		// set trust
 		setMyTrust(Integer.valueOf((input.readString())));
 		
 	}

@@ -13,89 +13,11 @@ mas mAPS {
 	
 	
 	agent m1: driver.asl {
-		beliefs: myTrust(100)
-				timeToSpend(10000)
-				timeToArrive(4000)
+		beliefs: timeToSpend(3000)
+				 timeToArrive(1000)
 	}
 	
-	agent m1: driver.asl {
-		beliefs: myTrust(100)
-				timeToSpend(10000)
-				timeToArrive(4250)				
-	}
 	
-	agent m2: driver.asl {
-		beliefs: myTrust(450)
-				timeToSpend(3000)
-				timeToArrive(2000)				
-	}
-	
-	agent m2: driver.asl {
-		beliefs: myTrust(450)
-				timeToSpend(3000)
-				timeToArrive(2250)				
-	}
-	
-		agent m3: driver.asl {
-		beliefs: myTrust(999)
-				timeToSpend(5000)
-				timeToArrive(7000)				
-	}
-	
-	agent m3: driver.asl {
-		beliefs: myTrust(999)
-				timeToSpend(5000)
-				timeToArrive(7250)				
-	}
-	
-	agent m4: driver.asl {
-		beliefs: myTrust(4)
-				timeToSpend(7500)
-				timeToArrive(3500)				
-	}
-	
-	agent m4: driver.asl {
-		beliefs: myTrust(4)
-				timeToSpend(7500)
-				timeToArrive(3750)				
-	}
-	
-		agent m5: driver.asl {
-		beliefs: myTrust(120)
-				timeToSpend(1000)
-				timeToArrive(4500)				
-	}
-	
-		agent m5: driver.asl {
-		beliefs: myTrust(120)
-				timeToSpend(1000)
-				timeToArrive(4750)				
-	}
-	
-	agent m6: driver.asl {
-		beliefs: myTrust(770)
-				timeToSpend(9000)
-				timeToArrive(6700)				
-	}
-	
-	agent m6: driver.asl {
-		beliefs: myTrust(770)
-				timeToSpend(9000)
-				timeToArrive(6250)				
-	}
-	
-		agent m7: driver.asl {
-		beliefs: myTrust(180)
-				timeToSpend(12000)
-				timeToArrive(9000)				
-	}
-	
-		agent m7: driver.asl {
-		beliefs: myTrust(180)
-				timeToSpend(12000)
-				timeToArrive(9300)
-				
-	}
     
 /* 
    agent definition

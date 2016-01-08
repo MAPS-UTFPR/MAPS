@@ -1,5 +1,5 @@
 // Agent driver in project mAPS
-// Background is the image reputation that an agent owns (0-1000)
+// Trust is the value that an agent owns (0-1000)
 
 /*Initials Goals*/
 
@@ -10,9 +10,9 @@
 		!requestSpot;
 		+arrivalParking.
 
-+!requestSpot : myTrust(MT)
++!requestSpot
 	<- .print("Arrived in the parking! Waiting for a spot...");
-	   .send(manager,achieve,requestSpot(MT)).   
+	   .send(manager,achieve,requestSpot).   
 
 +!park(S)[source(AGENT)] : spotOk & arrivalParking & timeToSpend(TS)
 	<- .print("Parking at the spot: ",S);
@@ -23,7 +23,12 @@
 +!leaveSpot : spot(S) <-
 	.print("Leaving the parking...");	
 	.send(manager,achieve,leaveSpot(S));
-	-spot(S).
+	-spot(S);
+    .send(manager,achieve,requestSpot).   
+	
+	
+	
+
 
 
 
