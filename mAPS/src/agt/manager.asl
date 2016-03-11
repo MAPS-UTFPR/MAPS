@@ -129,6 +129,7 @@ spot(0,0, "EMPTY").
 		!requestSpotQueue(AG,BG);
 	}else{
 		.print("Nobody at queue");
+		closeDB;
 	}.
 	     
 +!leaveSpot(S)[source(AG)] : nSpotsUsed(N) & nSpotsMAX(MAX) &  isFull(COND) &

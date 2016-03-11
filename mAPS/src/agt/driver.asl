@@ -20,11 +20,11 @@
 		.wait(TS);
 		!leaveSpot.
 
-+!leaveSpot : spot(S) <-
++!leaveSpot : spot(S) & timeToArrive(TA) <-
 	.print("Leaving the parking...");	
 	.send(manager,achieve,leaveSpot(S));
-	-spot(S);
-    .send(manager,achieve,requestSpot).   
+	-spot(S).
+	//.send(manager,achieve,requestSpot).   
 	
 	
 	

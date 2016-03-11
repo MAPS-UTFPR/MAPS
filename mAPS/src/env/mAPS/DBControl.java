@@ -49,8 +49,7 @@ public class DBControl extends Artifact {
 
 			// create/open mapsDB using config
 			mapsDB = dbEnv.openDatabase(null, "MAPS_DB", dbConf);	
-			System.out.println("deu boa!");
-
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -92,7 +91,7 @@ public class DBControl extends Artifact {
 		}
 			
 	}	
-
+	@OPERATION
 	public void closeDB() {
 		mapsDB.close();
 		dbEnv.close();
