@@ -14,7 +14,7 @@ mas mAPS {
 	
 	agent m1: driver.asl {
 		beliefs: timeToSpend(3000)
-				 timeToArrive(1000)
+				 timeToArrive(4000)
 	}
 	
 	
