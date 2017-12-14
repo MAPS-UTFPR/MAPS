@@ -6,7 +6,7 @@ Please do not think twice to fork and contribute with the **MAPS** project.
 
 In case of any doubts/suggestions, please contact us:
 
-		Lucas F. Souza de Castro (l.castropg@gmail.com)
+		Lucas Castro (l.castropg@gmail.com)
 
 		Wesley R. C. Gonçalves (wesleyramos523@gmail.com)
 
